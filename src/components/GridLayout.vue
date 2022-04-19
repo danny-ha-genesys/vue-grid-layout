@@ -163,6 +163,7 @@
             this.$emit('layout-before-mount', this.layout);
         },
         mounted: function() {
+            this.layout = this.sortLayout(this.layout);
             this.$emit('layout-mounted', this.layout);
             this.$nextTick(function () {
                 validateLayout(this.layout);
@@ -341,6 +342,7 @@
                 if (eventName === 'dragend') this.$emit('layout-updated', this.layout);
             },
             resizeEvent: function (eventName, id, x, y, h, w) {
+                this.layout = this.sortLayout(this.layout);
                 let l = getLayoutItem(this.layout, id);
                 //GetLayoutItem sometimes return null object
                 if (l === undefined || l === null){
@@ -461,6 +463,20 @@
 
                 //Combine the two arrays of unique entries#
                 return uniqueResultOne.concat(uniqueResultTwo);
+            },
+
+            sortLayout: function sortLayout(layout) {
+                return [].concat(layout).sort(function (a, b) {
+                    if (a.y === b.y && a.x === b.x) {
+                    return 0;
+                    }
+                
+                    if (a.y > b.y || a.y === b.y && a.x > b.x) {
+                    return 1;
+                    }
+                
+                    return -1;
+                });
             }
         },
     }
