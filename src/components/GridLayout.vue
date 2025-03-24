@@ -131,6 +131,7 @@
                 lastBreakpoint: null, // store last active breakpoint
                 originalLayout: null, // store original Layout
                 // layout: JSON.parse(JSON.stringify(this.value)),
+                colsSort: {}
             };
         },
         created () {
@@ -285,7 +286,8 @@
                     this.eventBus.emit("updateWidth", this.width);
                     this.updateHeight();
 
-                    this.$emit('layout-updated',this.layout)
+                    this.$emit('layout-updated',this.layout);
+                    this.setItemOrder();
                 }
             },
             updateHeight: function () {
@@ -433,6 +435,7 @@
 
                 this.lastBreakpoint = newBreakpoint;
                 this.eventBus.emit("setColNum", getColsFromBreakpoint(newBreakpoint, this.cols));
+                this.setItemOrder();
             },
 
             // clear all responsive layouts
@@ -460,6 +463,29 @@
 
                 //Combine the two arrays of unique entries#
                 return uniqueResultOne.concat(uniqueResultTwo);
+            },
+
+            setItemOrder() {
+                this.colsSort = {};
+                this.layout.forEach((item) => {
+                    if (this.colsSort[item.x]) {
+                        this.colsSort[item.x].push(item);
+                    } else {
+                        this.colsSort[item.x] = [item]; 
+                    }
+                });
+                for (let i in this.colsSort) {
+                    this.colsSort[i].sort((a, b) => {
+                        return a.y - b.y;
+                    });
+                }
+                const parentElem = document.querySelector('.vue-grid-layout');
+                for (let i in this.colsSort) {
+                    this.colsSort[i].forEach((item) => {
+                        const elem = document.querySelector(`#gridItem${item.i}`);
+                        parentElem.append(elem);
+                    })
+                }
             }
         },
     }

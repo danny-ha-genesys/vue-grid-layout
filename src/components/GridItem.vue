@@ -3,6 +3,7 @@
          class="vue-grid-item"
          :class="classObj"
          :style="style"
+         :id="`gridItem${i}`"
     >
         <slot></slot>
         <span v-if="resizableAndNotStatic" ref="handle" :class="resizableHandleClass"></span>
