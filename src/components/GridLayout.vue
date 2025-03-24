@@ -480,6 +480,7 @@
                             return a.y - b.y;
                         });
                     }
+                    document.querySelector('.vue-grid-placeholder').removeAttribute('id');
                     const parentElem = document.querySelector('.vue-grid-layout');
                     for (let i in this.colsSort) {
                         this.colsSort[i].forEach((item) => {
