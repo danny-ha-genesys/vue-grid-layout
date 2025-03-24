@@ -483,12 +483,45 @@
                     document.querySelector('.vue-grid-placeholder').removeAttribute('id');
                     const parentElem = document.querySelector('.vue-grid-layout');
                     for (let i in this.colsSort) {
-                        this.colsSort[i].forEach((item) => {
+                        this.colsSort[i].forEach((item, index) => {
                             const elem = document.querySelector(`#gridItem${item.i}`);
+                            elem.setAttribute('data-colsSortIndex', index);
                             parentElem.append(elem);
                         })
                     }
-                }, 1000);
+                }, 100);
+            },
+
+            moveItem: function (id, dir) {
+                let l = getLayoutItem(this.layout, id);
+                let x = l.x;
+                let y = l.y;
+                let elem = document.querySelector(`#gridItem${id}`);
+                switch (dir) {
+                    case 'left':
+                        if (l.x > 0) {
+                            x--;
+                            y = 0;
+                        }
+                        break;
+                    case 'right':
+                        if ((l.x + l.w) < this.colNum) {
+                            x++;
+                            y = 0;
+                        }
+                        break;
+                    case 'up': {
+                        const index = parseInt(elem.getAttribute('data-colsSortIndex'));
+                        const data = this.colsSort[l.x][index > 0 ? (index - 1) : 0];
+                        y = data.y > 0 ? data.y - 1 : 0;
+                        break;
+                    }
+                    case 'down':
+                        y = l.y + l.h + 2;
+                        break;
+                }
+                moveElement(this.layout, l, x, y, true, this.preventCollision);
+                this.layoutUpdate();
             }
         },
     }

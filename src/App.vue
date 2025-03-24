@@ -25,6 +25,10 @@
             <button @click="increaseWidth">Increase Width</button>
             <button @click="addItem">Add an item</button>
             <button @click="addItemDynamically">Add an item dynamically</button>
+            <button @click="moveItem('left')">Move Left</button>
+            <button @click="moveItem('right')">Move Right</button>
+            <button @click="moveItem('up')">Move Up</button>
+            <button @click="moveItem('down')">Move Down</button>
             <!-- Add to show rtl support -->
             <button @click="changeDirection">Change Direction</button>
             <input type="checkbox" v-model="draggable"/> Draggable
@@ -55,6 +59,7 @@
                 @layout-ready="layoutReadyEvent"
                 @layout-updated="layoutUpdatedEvent"
                 @breakpoint-changed="breakpointChangedEvent"
+                ref="gridLayoutRef"
             >
                 <grid-item v-for="item in layout"
                            :key="item.i"
@@ -283,7 +288,11 @@
             },
             breakpointChangedEvent: function(newBreakpoint, newLayout){
                 console.log("breakpoint changed breakpoint=", newBreakpoint, ", layout: ", newLayout );
-            }
+            },
+            moveItem: function(dir) {
+                // console.log('****** HERE MOVE ITEM', );
+                this.$refs.gridLayoutRef.moveItem('12', dir);
+            },
 
         },
     }
