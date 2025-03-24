@@ -466,26 +466,28 @@
             },
 
             setItemOrder() {
-                this.colsSort = {};
-                this.layout.forEach((item) => {
-                    if (this.colsSort[item.x]) {
-                        this.colsSort[item.x].push(item);
-                    } else {
-                        this.colsSort[item.x] = [item]; 
-                    }
-                });
-                for (let i in this.colsSort) {
-                    this.colsSort[i].sort((a, b) => {
-                        return a.y - b.y;
+                setTimeout(() => {
+                    this.colsSort = {};
+                    this.layout.forEach((item) => {
+                        if (this.colsSort[item.x]) {
+                            this.colsSort[item.x].push(item);
+                        } else {
+                            this.colsSort[item.x] = [item]; 
+                        }
                     });
-                }
-                const parentElem = document.querySelector('.vue-grid-layout');
-                for (let i in this.colsSort) {
-                    this.colsSort[i].forEach((item) => {
-                        const elem = document.querySelector(`#gridItem${item.i}`);
-                        parentElem.append(elem);
-                    })
-                }
+                    for (let i in this.colsSort) {
+                        this.colsSort[i].sort((a, b) => {
+                            return a.y - b.y;
+                        });
+                    }
+                    const parentElem = document.querySelector('.vue-grid-layout');
+                    for (let i in this.colsSort) {
+                        this.colsSort[i].forEach((item) => {
+                            const elem = document.querySelector(`#gridItem${item.i}`);
+                            parentElem.append(elem);
+                        })
+                    }
+                }, 1000);
             }
         },
     }
