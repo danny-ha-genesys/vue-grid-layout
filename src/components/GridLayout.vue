@@ -340,6 +340,7 @@
                 this.eventBus.emit("compact");
                 this.updateHeight();
                 if (eventName === 'dragend') this.$emit('layout-updated', this.layout);
+                this.setItemOrder();
             },
             resizeEvent: function (eventName, id, x, y, h, w) {
                 let l = getLayoutItem(this.layout, id);
@@ -486,10 +487,11 @@
                         this.colsSort[i].forEach((item, index) => {
                             const elem = document.querySelector(`#gridItem${item.i}`);
                             elem.setAttribute('data-colsSortIndex', index);
+                            elem.setAttribute('data-colsSortLast', this.colsSort[i].length - 1 === index);
                             parentElem.append(elem);
                         })
                     }
-                }, 100);
+                }, 200);
             },
 
             moveItem: function (id, dir) {
