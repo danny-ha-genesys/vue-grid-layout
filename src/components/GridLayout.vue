@@ -179,8 +179,8 @@
 
                     compact(self.layout, self.verticalCompact);
 
-                    self.$emit('layout-updated',self.layout);
                     self.setItemOrder();
+                    self.$emit('layout-updated',self.layout);
 
                     self.updateHeight();
                     self.$nextTick(function () {
@@ -287,8 +287,8 @@
                     this.eventBus.emit("updateWidth", this.width);
                     this.updateHeight();
 
-                    this.$emit('layout-updated',this.layout);
                     this.setItemOrder();
+                    this.$emit('layout-updated',this.layout);
                 }
             },
             updateHeight: function () {
@@ -340,8 +340,10 @@
                 // needed because vue can't detect changes on array element properties
                 this.eventBus.emit("compact");
                 this.updateHeight();
-                if (eventName === 'dragend') this.$emit('layout-updated', this.layout);
-                this.setItemOrder();
+                if (eventName === 'dragend') {
+                    this.setItemOrder();
+                    this.$emit('layout-updated', this.layout);
+                }
             },
             resizeEvent: function (eventName, id, x, y, h, w) {
                 let l = getLayoutItem(this.layout, id);
@@ -402,8 +404,10 @@
                 this.eventBus.emit("compact");
                 this.updateHeight();
 
-                if (eventName === 'resizeend') this.$emit('layout-updated', this.layout);
-                this.setItemOrder();
+                if (eventName === 'resizeend') {
+                    this.setItemOrder();
+                    this.$emit('layout-updated', this.layout);
+                }
             },
 
             // finds or generates new layouts for set breakpoints
@@ -493,7 +497,7 @@
                             parentElem.append(elem);
                         })
                     }
-                // }, 200);
+                // }, 100);
             },
 
             moveItem: function (id, dir) {
