@@ -179,7 +179,8 @@
 
                     compact(self.layout, self.verticalCompact);
 
-                    self.$emit('layout-updated',self.layout)
+                    self.$emit('layout-updated',self.layout);
+                    self.setItemOrder();
 
                     self.updateHeight();
                     self.$nextTick(function () {
@@ -402,6 +403,7 @@
                 this.updateHeight();
 
                 if (eventName === 'resizeend') this.$emit('layout-updated', this.layout);
+                this.setItemOrder();
             },
 
             // finds or generates new layouts for set breakpoints
@@ -436,7 +438,7 @@
 
                 this.lastBreakpoint = newBreakpoint;
                 this.eventBus.emit("setColNum", getColsFromBreakpoint(newBreakpoint, this.cols));
-                this.setItemOrder();
+                // this.setItemOrder();
             },
 
             // clear all responsive layouts
@@ -467,7 +469,7 @@
             },
 
             setItemOrder() {
-                setTimeout(() => {
+                // setTimeout(() => {
                     this.colsSort = {};
                     this.layout.forEach((item) => {
                         if (this.colsSort[item.x]) {
@@ -491,7 +493,7 @@
                             parentElem.append(elem);
                         })
                     }
-                }, 200);
+                // }, 200);
             },
 
             moveItem: function (id, dir) {
