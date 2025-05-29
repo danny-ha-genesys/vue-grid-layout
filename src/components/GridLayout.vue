@@ -287,7 +287,7 @@
                     this.eventBus.emit("updateWidth", this.width);
                     this.updateHeight();
 
-                    // this.setItemOrder();
+                    this.setItemOrder();
                     this.$emit('layout-updated',this.layout);
                 }
             },
@@ -310,7 +310,7 @@
                 return containerHeight;
             },
             dragEvent: function (eventName, id, x, y, h, w) {
-                console.log("********* DRAGGING2 :::" + eventName + " id=" + id + ", x=" + x + ", y=" + y);
+                console.log("********* DRAGGING5 :::" + eventName + " id=" + id + ", x=" + x + ", y=" + y);
                 let l = getLayoutItem(this.layout, id);
                 //GetLayoutItem sometimes returns null object
                 if (l === undefined || l === null){
@@ -341,7 +341,7 @@
                 this.eventBus.emit("compact");
                 this.updateHeight();
                 if (eventName === 'dragend') {
-                    // this.setItemOrder();
+                    this.setItemOrder();
                     this.$emit('layout-updated', this.layout);
                 }
             },
@@ -405,7 +405,7 @@
                 this.updateHeight();
 
                 if (eventName === 'resizeend') {
-                    // this.setItemOrder();
+                    this.setItemOrder();
                     this.$emit('layout-updated', this.layout);
                 }
             },
