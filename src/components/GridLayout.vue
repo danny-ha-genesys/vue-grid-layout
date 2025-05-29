@@ -287,7 +287,7 @@
                     this.eventBus.emit("updateWidth", this.width);
                     this.updateHeight();
 
-                    this.setItemOrder();
+                    // this.setItemOrder();
                     this.$emit('layout-updated',this.layout);
                 }
             },
@@ -341,7 +341,7 @@
                 this.eventBus.emit("compact");
                 this.updateHeight();
                 if (eventName === 'dragend') {
-                    this.setItemOrder();
+                    // this.setItemOrder();
                     this.$emit('layout-updated', this.layout);
                 }
             },
@@ -405,7 +405,7 @@
                 this.updateHeight();
 
                 if (eventName === 'resizeend') {
-                    this.setItemOrder();
+                    // this.setItemOrder();
                     this.$emit('layout-updated', this.layout);
                 }
             },
@@ -442,7 +442,6 @@
 
                 this.lastBreakpoint = newBreakpoint;
                 this.eventBus.emit("setColNum", getColsFromBreakpoint(newBreakpoint, this.cols));
-                // this.setItemOrder();
             },
 
             // clear all responsive layouts
