@@ -310,7 +310,7 @@
                 return containerHeight;
             },
             dragEvent: function (eventName, id, x, y, h, w) {
-                console.log("********* DRAGGING :::" + eventName + " id=" + id + ", x=" + x + ", y=" + y);
+                console.log("********* DRAGGING1 :::" + eventName + " id=" + id + ", x=" + x + ", y=" + y);
                 let l = getLayoutItem(this.layout, id);
                 //GetLayoutItem sometimes returns null object
                 if (l === undefined || l === null){
