@@ -261,6 +261,9 @@
         },
         methods: {
             layoutUpdate() {
+
+                console.log("****** LAYOUT UPDATE!", JSON.parse(JSON.stringify(this.layout)), JSON.parse(JSON.stringify(this.originalLayout.length)));
+
                 if (this.layout !== undefined && this.originalLayout !== null) {
                     if (this.layout.length !== this.originalLayout.length) {
                         // console.log("### LAYOUT UPDATE!", this.layout.length, this.originalLayout.length);
@@ -448,6 +451,7 @@
             initResponsiveFeatures(){
                 // clear layouts
                 this.layouts = Object.assign({}, this.responsiveLayouts);
+                console.log("****** initResponsiveFeatures!", JSON.parse(JSON.stringify(this.layouts)));
             },
 
             // find difference in layouts
