@@ -262,7 +262,7 @@
         methods: {
             layoutUpdate() {
 
-                console.log("****** LAYOUT UPDATE!", JSON.parse(JSON.stringify(this.layout)), JSON.parse(JSON.stringify(this.originalLayout)));
+                // console.log("****** LAYOUT UPDATE!", JSON.parse(JSON.stringify(this.layout)), JSON.parse(JSON.stringify(this.originalLayout)));
 
                 if (this.layout !== undefined && this.originalLayout !== null) {
                     if (this.layout.length !== this.originalLayout.length) {
@@ -313,7 +313,7 @@
                 return containerHeight;
             },
             dragEvent: function (eventName, id, x, y, h, w) {
-                console.log("********* DRAGGING5 :::" + eventName + " id=" + id + ", x=" + x + ", y=" + y);
+                // console.log("********* DRAGGING5 :::" + eventName + " id=" + id + ", x=" + x + ", y=" + y);
                 let l = getLayoutItem(this.layout, id);
                 //GetLayoutItem sometimes returns null object
                 if (l === undefined || l === null){
@@ -451,7 +451,7 @@
             initResponsiveFeatures(){
                 // clear layouts
                 this.layouts = Object.assign({}, this.responsiveLayouts);
-                console.log("****** initResponsiveFeatures", JSON.parse(JSON.stringify(this.layouts)));
+                // console.log("****** initResponsiveFeatures", JSON.parse(JSON.stringify(this.layouts)));
             },
 
             // find difference in layouts
