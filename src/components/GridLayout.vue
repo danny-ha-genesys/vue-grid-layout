@@ -313,7 +313,9 @@
                 return containerHeight;
             },
             dragEvent: function (eventName, id, x, y, h, w) {
-                // console.log("********* DRAGGING5 :::" + eventName + " id=" + id + ", x=" + x + ", y=" + y);
+
+                console.log("********* DRAGGING5 :::" + eventName + " id=" + id + ", x=" + x + ", y=" + y);
+
                 let l = getLayoutItem(this.layout, id);
                 //GetLayoutItem sometimes returns null object
                 if (l === undefined || l === null){
@@ -349,6 +351,9 @@
                 }
             },
             resizeEvent: function (eventName, id, x, y, h, w) {
+
+                console.log("********* RESIZING5 :::" + eventName + " id=" + id + ", x=" + x + ", y=" + y);
+
                 let l = getLayoutItem(this.layout, id);
                 //GetLayoutItem sometimes return null object
                 if (l === undefined || l === null){
