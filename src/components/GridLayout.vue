@@ -290,7 +290,7 @@
                     this.eventBus.emit("updateWidth", this.width);
                     this.updateHeight();
 
-                    // this.setItemOrder();
+                    this.setItemOrder();
                     this.$emit('layout-updated',this.layout);
                 }
             },
