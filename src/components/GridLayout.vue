@@ -528,9 +528,9 @@
                         break;
                     case 'up': {
                         const index = parseInt(elem.getAttribute('data-colsSortIndex'));
-                        console.log("&&&&&&&&&& MOVE ITEM UP1a :::", index, index > 0 ? (index - 1) : 0);
-                        console.log("&&&&&&&&&& MOVE ITEM UP2a :::", JSON.stringify(this.colsSort), l.x);
-                        const data = this.colsSort[l.x][index > 0 ? (index - 1) : 0];
+                        console.log("&&&&&&&&&& MOVE ITEM UP1b :::", index, index > 0 ? (index - 1) : 0);
+                        console.log("&&&&&&&&&& MOVE ITEM UP2b :::", JSON.stringify(this.colsSort), this.colsSort[(l.x).toString()], l.x);
+                        const data = this.colsSort[(l.x).toString()][index > 0 ? (index - 1) : 0];
                         y = data.y > 0 ? data.y - 1 : 0;
                         break;
                     }
