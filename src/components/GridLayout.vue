@@ -540,7 +540,6 @@
                 }
                 moveElement(this.layout, l, x, y, true, this.preventCollision);
                 this.layoutUpdate();
-                this.setItemOrder();
             }
         },
     }
