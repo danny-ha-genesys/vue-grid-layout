@@ -529,6 +529,8 @@
                     case 'up': {
                         const index = parseInt(elem.getAttribute('data-colsSortIndex'));
                         const data = this.colsSort[l.x][index > 0 ? (index - 1) : 0];
+                        console.log("&&&&&&&&&& MOVE ITEM UP1 :::", index, index > 0 ? (index - 1) : 0);
+                        console.log("&&&&&&&&&& MOVE ITEM UP2 :::", this.colsSort[l.x], l.x);
                         y = data.y > 0 ? data.y - 1 : 0;
                         break;
                     }
