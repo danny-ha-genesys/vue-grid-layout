@@ -314,7 +314,7 @@
             },
             dragEvent: function (eventName, id, x, y, h, w) {
 
-                console.log("********* DRAGGING5 :::" + eventName + " id=" + id + ", x=" + x + ", y=" + y);
+                // console.log("********* DRAGGING5 :::" + eventName + " id=" + id + ", x=" + x + ", y=" + y);
 
                 let l = getLayoutItem(this.layout, id);
                 //GetLayoutItem sometimes returns null object
@@ -352,7 +352,7 @@
             },
             resizeEvent: function (eventName, id, x, y, h, w) {
 
-                console.log("********* RESIZING5 :::" + eventName + " id=" + id + ", x=" + x + ", y=" + y);
+                // console.log("********* RESIZING5 :::" + eventName + " id=" + id + ", x=" + x + ", y=" + y);
 
                 let l = getLayoutItem(this.layout, id);
                 //GetLayoutItem sometimes return null object
@@ -512,7 +512,7 @@
                 let l = getLayoutItem(this.layout, id);
                 let x = l.x;
                 let y = l.y;
-                let elem = document.querySelector(`#gridItem${id}`);
+                // let elem = document.querySelector(`#gridItem${id}`);
                 switch (dir) {
                     case 'left':
                         if (l.x > 0) {
@@ -527,15 +527,10 @@
                         }
                         break;
                     case 'up': {
-                        const index = parseInt(elem.getAttribute('data-colsSortIndex'));
-                        console.log("&&&&&&&&&& MOVE ITEM UP1b :::", index, index > 0 ? (index - 1) : 0);
-                        console.log("&&&&&&&&&& MOVE ITEM UP2b :::", this, l.x);
+                        // const index = parseInt(elem.getAttribute('data-colsSortIndex'));
                         // const data = this.colsSort[l.x][index > 0 ? (index - 1) : 0];
                         // y = data.y > 0 ? data.y - 1 : 0;
-
                         const aboveItem = findAboveItemUtil(this.layout, id);
-                        console.log("&&&&&&&&&& MOVE ITEM UP3b :::", aboveItem);
-
                         y = aboveItem && l.y - aboveItem.h >= 0 ? l.y - aboveItem.h : 0;
                         break;
                     }
