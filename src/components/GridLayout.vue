@@ -536,7 +536,7 @@
                         const aboveItem = findAboveItemUtil(this.layout, id);
                         console.log("&&&&&&&&&& MOVE ITEM UP3b :::", aboveItem);
 
-                        y = l.y - l.h >= 0 ? l.y - l.h : 0;
+                        y = aboveItem && l.y - aboveItem.h >= 0 ? l.y - aboveItem.h : 0;
                         break;
                     }
                     case 'down':
