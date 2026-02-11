@@ -599,3 +599,44 @@ export function findAndRemove(array, property, value) {
         }
     });
 }
+
+/**
+ * Find the object above a given item in the layout.
+ * The object above is defined as:
+ * - Has a y value less than the current object's y value
+ * - The current object's x value is within or equal to the other object's x + w range (horizontal overlap)
+ * - Among all such objects, returns the one with the largest y value
+ *
+ * @param  {Array} layout Layout array.
+ * @param  {String} id    ID of the current item.
+ * @return {Object|undefined} The item above, or undefined if none found.
+ */
+export function findAboveItem(layout, id) {
+    const currentItem = getLayoutItem(layout, id);
+    if (!currentItem) return undefined;
+
+    let aboveItem = null;
+    let maxY = -1;
+
+    for (let i = 0, len = layout.length; i < len; i++) {
+        const item = layout[i];
+        
+        // Skip the current item itself
+        if (item.i === id) continue;
+
+        // Check if item is above (y < current y)
+        if (item.y < currentItem.y) {
+            // Check if current item's x is within or equal to item's x + w range
+            // This means: currentItem.x >= item.x && currentItem.x <= item.x + item.w
+            if (currentItem.x >= item.x && currentItem.x <= item.x + item.w) {
+                // Check if this item has a larger y value than our current candidate
+                if (item.y > maxY) {
+                    maxY = item.y;
+                    aboveItem = item;
+                }
+            }
+        }
+    }
+
+    return aboveItem;
+}

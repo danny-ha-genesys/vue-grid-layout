@@ -20,7 +20,7 @@
     import mitt from 'mitt';
     const elementResizeDetectorMaker = require("element-resize-detector");
 
-    import {bottom, compact, getLayoutItem, moveElement, validateLayout, cloneLayout, getAllCollisions} from '@/helpers/utils';
+    import {bottom, compact, getLayoutItem, moveElement, validateLayout, cloneLayout, getAllCollisions, findAboveItem as findAboveItemUtil} from '@/helpers/utils';
     import {getBreakpointFromWidth, getColsFromBreakpoint, findOrGenerateResponsiveLayout} from "@/helpers/responsiveUtils";
     //var eventBus = require('./eventBus');
 
@@ -532,6 +532,10 @@
                         console.log("&&&&&&&&&& MOVE ITEM UP2b :::", this, l.x);
                         // const data = this.colsSort[l.x][index > 0 ? (index - 1) : 0];
                         // y = data.y > 0 ? data.y - 1 : 0;
+
+                        const aboveItem = findAboveItemUtil(this.layout, id);
+                        console.log("&&&&&&&&&& MOVE ITEM UP3b :::", aboveItem);
+
                         y = l.y - l.h >= 0 ? l.y - l.h : 0;
                         break;
                     }
