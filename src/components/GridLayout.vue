@@ -155,7 +155,7 @@
             this.eventBus.off('resizeEvent', this.resizeEventHandler);
             this.eventBus.off('dragEvent', this.dragEventHandler);
             removeWindowEventListener("resize", this.onWindowResize);
-            if (this.erd) {
+            if (this.erd && this.$refs.item) {
                 this.erd.uninstall(this.$refs.item);
             }
         },
@@ -184,6 +184,8 @@
 
                     self.updateHeight();
                     self.$nextTick(function () {
+                        // Component may unmount before this tick runs.
+                        if (!self.$refs.item) return;
                         this.erd = elementResizeDetectorMaker({
                             strategy: "scroll", //<- For ultra performance.
                             // See https://github.com/wnr/element-resize-detector/issues/110 about callOnAdd.
