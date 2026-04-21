@@ -455,7 +455,7 @@
 
                 // HUB SPECIFIC HEIGHT ADJUSTMENT
                 const hubHeightAdjust = (height) => {
-                    const widgetMinHeight = this.rowHeight * 12;
+                    const widgetMinHeight = 230;
                     return height < widgetMinHeight ? widgetMinHeight : height;
                 }
 
@@ -492,7 +492,7 @@
                     }
                 }
 
-                console.debug("************** DEBUG STYLE:", this.i, this.rowHeight, style.height);
+                // console.debug("************** DEBUG STYLE:", this.i, this.rowHeight, style.height);
                 this.style = style;
             },
             emitContainerResized() {
