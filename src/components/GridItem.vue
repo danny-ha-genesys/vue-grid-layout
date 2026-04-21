@@ -473,19 +473,20 @@
                 if (this.useCssTransforms) {
 //                    Add rtl support
                     if (this.renderRtl) {
-                        style = setTransformRtl(pos.top, pos.right, pos.width, pos.height);
+                        style = setTransformRtl(pos.top, pos.right, pos.width, pos.height < this.minH ? this.minH : pos.height);
                     } else {
-                        style = setTransform(pos.top, pos.left, pos.width, pos.height);
+                        style = setTransform(pos.top, pos.left, pos.width, pos.height < this.minH ? this.minH : pos.height);
                     }
 
                 } else { // top,left (slow)
 //                    Add rtl support
                     if (this.renderRtl) {
-                        style = setTopRight(pos.top, pos.right, pos.width, pos.height);
+                        style = setTopRight(pos.top, pos.right, pos.width, pos.height < this.minH ? this.minH : pos.height);
                     } else {
-                        style = setTopLeft(pos.top, pos.left, pos.width, pos.height);
+                        style = setTopLeft(pos.top, pos.left, pos.width, pos.height < this.minH ? this.minH : pos.height);
                     }
                 }
+                console.debug("************** DEBUG STYLE:", style);
                 this.style = style;
             },
             emitContainerResized() {
