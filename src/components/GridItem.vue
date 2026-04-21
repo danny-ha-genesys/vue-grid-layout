@@ -800,9 +800,8 @@
                     let maximum = this.calcPosition(0,0,this.maxW, this.maxH);
                     let minimum = this.calcPosition(0,0, this.minW, this.minH);
 
-                    console.debug("************** DEBUG MIN H:", this.minH);
-                    console.debug("************** DEBUG MAX:", JSON.stringify(maximum));
-                    console.debug("************** DEBUG MIN:", JSON.stringify(minimum));
+                    console.debug("************** DEBUG MIN H:", this.i, this.minH);
+                    console.debug("************** DEBUG MIN:", this.i, JSON.stringify(minimum));
 
                     const opts = {
                         // allowFrom: "." + this.resizableHandleClass.trim().replace(" ", "."),
