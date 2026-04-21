@@ -148,7 +148,7 @@
             minH: {
                 type: Number,
                 required: false,
-                default: 1
+                default: 12
             },
             minW: {
                 type: Number,
