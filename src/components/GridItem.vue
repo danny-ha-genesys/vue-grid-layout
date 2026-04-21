@@ -148,7 +148,7 @@
             minH: {
                 type: Number,
                 required: false,
-                default: 12 // following Hub to resolve an untracable bug
+                default: 1
             },
             minW: {
                 type: Number,
@@ -486,6 +486,7 @@
                         style = setTopLeft(pos.top, pos.left, pos.width, pos.height);
                     }
                 }
+                console.debug("************** DEBUG STYLE:", this.i, this.minH, style.height);
                 this.style = style;
             },
             emitContainerResized() {
