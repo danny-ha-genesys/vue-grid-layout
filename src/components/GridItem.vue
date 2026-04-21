@@ -148,7 +148,7 @@
             minH: {
                 type: Number,
                 required: false,
-                default: 1
+                default: 12 // following Hub to resolve an untracable bug
             },
             minW: {
                 type: Number,
@@ -473,20 +473,19 @@
                 if (this.useCssTransforms) {
 //                    Add rtl support
                     if (this.renderRtl) {
-                        style = setTransformRtl(pos.top, pos.right, pos.width, pos.height < this.minH ? this.minH : pos.height);
+                        style = setTransformRtl(pos.top, pos.right, pos.width, pos.height);
                     } else {
-                        style = setTransform(pos.top, pos.left, pos.width, pos.height < this.minH ? this.minH : pos.height);
+                        style = setTransform(pos.top, pos.left, pos.width, pos.height);
                     }
 
                 } else { // top,left (slow)
 //                    Add rtl support
                     if (this.renderRtl) {
-                        style = setTopRight(pos.top, pos.right, pos.width, pos.height < this.minH ? this.minH : pos.height);
+                        style = setTopRight(pos.top, pos.right, pos.width, pos.height);
                     } else {
-                        style = setTopLeft(pos.top, pos.left, pos.width, pos.height < this.minH ? this.minH : pos.height);
+                        style = setTopLeft(pos.top, pos.left, pos.width, pos.height);
                     }
                 }
-                console.debug("************** DEBUG STYLE:", style);
                 this.style = style;
             },
             emitContainerResized() {
@@ -800,8 +799,8 @@
                     let maximum = this.calcPosition(0,0,this.maxW, this.maxH);
                     let minimum = this.calcPosition(0,0, this.minW, this.minH);
 
-                    console.debug("************** DEBUG MIN H:", this.i, this.minH);
-                    console.debug("************** DEBUG MIN:", this.i, JSON.stringify(minimum));
+                    // console.debug("************** DEBUG MIN H:", this.i, this.minH);
+                    // console.debug("************** DEBUG MIN:", this.i, JSON.stringify(minimum));
 
                     const opts = {
                         // allowFrom: "." + this.resizableHandleClass.trim().replace(" ", "."),
