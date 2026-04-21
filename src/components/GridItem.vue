@@ -453,6 +453,11 @@
                 }
                 let pos = this.calcPosition(this.innerX, this.innerY, this.innerW, this.innerH);
 
+                // HUB SPECIFIC HEIGHT ADJUSTMENT
+                const hubHeightAdjust = (height) => {
+                    const widgetMinHeight = this.rowHeight * 12;
+                    return height < widgetMinHeight ? widgetMinHeight : height;
+                }
 
                 if (this.isDragging) {
                     pos.top = this.dragging.top;
@@ -473,19 +478,20 @@
                 if (this.useCssTransforms) {
 //                    Add rtl support
                     if (this.renderRtl) {
-                        style = setTransformRtl(pos.top, pos.right, pos.width, pos.height);
+                        style = setTransformRtl(pos.top, pos.right, pos.width, hubHeightAdjust(pos.height));
                     } else {
-                        style = setTransform(pos.top, pos.left, pos.width, pos.height);
+                        style = setTransform(pos.top, pos.left, pos.width, hubHeightAdjust(pos.height));
                     }
 
                 } else { // top,left (slow)
 //                    Add rtl support
                     if (this.renderRtl) {
-                        style = setTopRight(pos.top, pos.right, pos.width, pos.height);
+                        style = setTopRight(pos.top, pos.right, pos.width, hubHeightAdjust(pos.height));
                     } else {
-                        style = setTopLeft(pos.top, pos.left, pos.width, pos.height);
+                        style = setTopLeft(pos.top, pos.left, pos.width, hubHeightAdjust(pos.height));
                     }
                 }
+
                 console.debug("************** DEBUG STYLE:", this.i, this.rowHeight, style.height);
                 this.style = style;
             },
